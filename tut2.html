@@ -36,19 +36,16 @@
       let regularHours = 40;
       let overtimeRate = 1.5;
 
-      // If hours worked is more than 40, calculate overtime
       if (employeeHours > regularHours) {
         let overtimeHours = employeeHours - regularHours;
         return (regularHours * hourlyRate) + (overtimeHours * hourlyRate * overtimeRate);
       }
-      // If no overtime
       return employeeHours * hourlyRate;
     }
 
-    // Select the results container
     const resultContainer = document.getElementById("payResults");
 
-    // Iterate for 3 employees
+
     for (let employeeIndex = 1; employeeIndex <= 3; employeeIndex++) {
       let employeeName = prompt(`Enter the name of employee ${employeeIndex}:`);
       let workedHours = parseFloat(prompt(`How many hours did ${employeeName} work this week?`));
@@ -56,7 +53,7 @@
 
       let totalPay = calculatePay(workedHours, hourlyRate);
 
-      // Creating and inserting the result in HTML
+
       let payDiv = document.createElement("div");
       payDiv.className = "pay-info";
       payDiv.innerHTML = `
@@ -70,3 +67,4 @@
   </script>
 </body>
 </html>
+
