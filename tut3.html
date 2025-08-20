@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication Table</title>
+    <style>
+        table {
+            width: 60%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 18px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Multiplication Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Number (N)</th>
+                <th>10 × N</th>
+                <th>100 × N</th>
+                <th>1000 × N</th>
+            </tr>
+        </thead>
+        <tbody id="multiplication-body">
+        </tbody>
+    </table>
+
+    <script>
+        function generateTable(limit) {
+            const tableBody = document.getElementById('multiplication-body');
+            for (let i = 1; i <= limit; i++) {
+                let tableRow = document.createElement('tr');
+                let numberCell = document.createElement('td');
+                numberCell.textContent = i;
+
+                let tenCell = document.createElement('td');
+                tenCell.textContent = 10 * i;
+
+                let hundredCell = document.createElement('td');
+                hundredCell.textContent = 100 * i;
+
+                let thousandCell = document.createElement('td');
+                thousandCell.textContent = 1000 * i;
+
+                tableRow.append(numberCell, tenCell, hundredCell, thousandCell);
+                tableBody.appendChild(tableRow);
+            }
+        }
+
+        const limit = parseInt(prompt("Enter the limit for the table: "), 10);
+        if (!isNaN(limit) && limit > 0) {
+            generateTable(limit);
+        } else {
+            alert("Please enter a valid number.");
+        }
+    </script>
+</body>
+</html>

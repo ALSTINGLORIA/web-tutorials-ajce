@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Pay Calculator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fafafa;
+      padding: 40px;
+    }
+    h1 {
+      color: #4CAF50;
+    }
+    .pay-info {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .pay-info h2 {
+      margin-top: 0;
+    }
+    .pay-info p {
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Employee Pay Details</h1>
+  <div id="payResults"></div>
+
+  <script>
+    function calculatePay(employeeHours, hourlyRate) {
+      let regularHours = 40;
+      let overtimeRate = 1.5;
+
+      // If hours worked is more than 40, calculate overtime
+      if (employeeHours > regularHours) {
+        let overtimeHours = employeeHours - regularHours;
+        return (regularHours * hourlyRate) + (overtimeHours * hourlyRate * overtimeRate);
+      }
+      // If no overtime
+      return employeeHours * hourlyRate;
+    }
+
+    // Select the results container
+    const resultContainer = document.getElementById("payResults");
+
+    // Iterate for 3 employees
+    for (let employeeIndex = 1; employeeIndex <= 3; employeeIndex++) {
+      let employeeName = prompt(`Enter the name of employee ${employeeIndex}:`);
+      let workedHours = parseFloat(prompt(`How many hours did ${employeeName} work this week?`));
+      let hourlyRate = parseFloat(prompt(`Enter ${employeeName}'s hourly wage:`));
+
+      let totalPay = calculatePay(workedHours, hourlyRate);
+
+      // Creating and inserting the result in HTML
+      let payDiv = document.createElement("div");
+      payDiv.className = "pay-info";
+      payDiv.innerHTML = `
+        <h2>${employeeName}</h2>
+        <p><strong>Worked Hours:</strong> ${workedHours}</p>
+        <p><strong>Hourly Rate:</strong> ₹${hourlyRate.toFixed(2)}</p>
+        <p><strong>Total Pay:</strong> ₹${totalPay.toFixed(2)}</p>
+      `;
+      resultContainer.appendChild(payDiv);
+    }
+  </script>
+</body>
+</html>
